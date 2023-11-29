@@ -1,14 +1,22 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {
+		store: { 
+			name:null,
+			email:null,
+			address:null,
+			phone:null,
+
+			contacts:[ 
+				
+			],
 			demo: [
 				{
-					title: "FIRST",
+					title: "FIRST dfwofunweofnweroiner",
 					background: "white",
 					initial: "white"
 				},
 				{
-					title: "SECOND",
+					title: "SECOND dfvefverfvedcwfbvgb",
 					background: "white",
 					initial: "white"
 				}
@@ -19,10 +27,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+			loadContactList: () => {
+			
+					fetch("https://playground.4geeks.com/apis/fake/contact/agenda/TS06")
+					.then((resp)=>resp.json())
+					.then(data => setStore({ "contacts": data }))
+
+
+			
+			},
+			createContactList: (name, email, address, phone) => {
+			
+				fetch("https://playground.4geeks.com/apis/fake/contact/", {
+					methods:"POST",
+					headers:{"content-type":"application/json"},
+					body:JSON.stringify({
+						"full_name": name,
+						"email": email,
+						"agenda_slug": "TS06",
+						"address":address,
+						"phone":phone
+					})
+				})
+				.then((resp)=>resp.json())
+				// .then(data => setStore({ "contacts": data }))
+
+				
+		
+		},
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+				
 			},
 			changeColor: (index, color) => {
 				//get the store
