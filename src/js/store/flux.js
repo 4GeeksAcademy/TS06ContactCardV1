@@ -39,20 +39,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			createContactList: (name, email, address, phone) => {
 			
 				fetch("https://playground.4geeks.com/apis/fake/contact/", {
-					methods:"POST",
-					headers:{"content-type":"application/json"},
+					method:"PUT",
+					headers:{"Content-type":"application/json"},
+					// body:JSON.stringify(contacts)
 					body:JSON.stringify({
 						"full_name": name,
 						"email": email,
 						"agenda_slug": "TS06",
 						"address":address,
-						"phone":phone
+						"phone":phone,
 					})
-				})
+				
 				.then((resp)=>resp.json())
 				// .then(data => setStore({ "contacts": data }))
 
-				
+				})
 		
 		},
 			loadSomeData: () => {

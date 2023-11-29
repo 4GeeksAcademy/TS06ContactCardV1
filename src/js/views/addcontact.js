@@ -56,7 +56,7 @@ export const AddContact = props => {
                 value={Address}
                 />
             </div>
-            <button type="button" onClick={(e)=>actions.createContactList} className="btn btn-primary">Save Form</button>
+            <button type="button" onClick={(e)=>actions.createContactList()} className="btn btn-primary">Save Form</button>
 		</div>
 	);
 };
