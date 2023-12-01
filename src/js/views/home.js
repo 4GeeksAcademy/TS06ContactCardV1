@@ -1,28 +1,40 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
-export const Home = () =>
-{const { store, actions } = useContext(Context)
-console.log(store)
-return(
+export const Home = () => {
+  const { store, actions } = useContext(Context);
 
-	<div className="text-center mt-5">
-		<Link to="/addcontact">
-					<button className="btn btn-success">Add New Contact</button>
-				</Link>
-		{store.contacts.map((contactList,i)=>{
-			return(
-				<div key={i}>
-				<h1>Full Name: {contactList.full_name}</h1>
-				<h2>Phone: {contactList.phone}</h2>
-				<h2>Adress: {contactList.adress}</h2>
-				<h2>Email: {contactList.email}</h2>
-				</div>
-			);
-		})}
-		
-	</div>
-);
-}
+  return (
+    <div className="text-center mt-5">
+      <Link to="/addcontact">
+        <button className="btn btn-success">Add New Contact</button>
+      </Link>
+      {store.contacts.map((contactList, i) => {
+        return (
+          <div key={i} className="card">
+            <div className="card-body">
+              <div className="d-flex align-items-center mb-3">
+                <div className="circle-avatar mr-3">
+                  <img src={contactList.avatar} alt="Avatar" />
+                </div>
+                <div>
+                  <h1>Full Name: {contactList.full_name}</h1>
+                  <h2>Phone: {contactList.phone}</h2>
+                  <h2>Address: {contactList.address}</h2>
+                  <h2>Email: {contactList.email}</h2>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between">
+                {/* <Link to={"/addcontact"}>
+                  <button className="btn btn-primary">Edit</button>
+                </Link> */}
+                <button className="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};

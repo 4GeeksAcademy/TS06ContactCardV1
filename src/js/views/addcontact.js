@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const AddContact = props => {
 	const { store, actions } = useContext(Context);
-	const[name,setName]=useState("")
+    const history= useNavigate();
+	const[Name,setName]=useState("")
     const[Phone,setPhone]=useState("")
     const[Email,setEmail]=useState("")
     const[Address,setAddress]=useState("")
-
+    const handleSubmit=()=>{
+        actions.createContactList(Name, Email, Address, Phone);
+        history("/");
+    }
 	return (
 		<div className="container">   Add a new contact
 			<div className="mb-3">
@@ -20,7 +23,7 @@ export const AddContact = props => {
                 id="exampleFormControlInput1" 
                 placeholder="Name"
                 onChange={(e)=>setName(e.target.value)}
-                value={name}
+                value={Name}
                 />
             </div>
             <div className="mb-3">
@@ -56,7 +59,8 @@ export const AddContact = props => {
                 value={Address}
                 />
             </div>
-            <button type="button" onClick={(e)=>actions.createContactList()} className="btn btn-primary">Save Form</button>
+            <button type="button" onClick={handleSubmit} className="btn btn-primary">Save Form</button>
+            {/* <button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>Change Color</button> */}
 		</div>
 	);
 };
