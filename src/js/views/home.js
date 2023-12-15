@@ -1,9 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  const [contacts, setContacts] = useState(store.contacts);
+
+  // Refresh the component when the contacts array changes
+  useEffect(() => {
+      setContacts(store.contacts);
+  }, [store.contacts]);
+  const handleAddContact = async () => {
+    // Call the addContact action to add a new contact
+    const newContacts = await actions.addContact("John Doe", "johndoe@example.com", "123 Main St", "123-456-7890");
+    setContacts(newContacts); // Update the local state with the updated contacts array
+};
 
   return (
     <div className="text-center mt-5">

@@ -10,7 +10,7 @@ export const AddContact = props => {
     const[Email,setEmail]=useState("")
     const[Address,setAddress]=useState("")
     const handleSubmit=()=>{
-        actions.createContactList(Name, Email, Address, Phone);
+        actions.addContact(Name, Email, Address, Phone);
         history("/");
     }
 	return (
